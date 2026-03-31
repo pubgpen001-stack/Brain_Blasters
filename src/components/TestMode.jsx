@@ -82,6 +82,7 @@ const TestMode = ({ onBack, onGameOver }) => {
   };
 
   const handleBubbleTap = (bubble) => {
+    // Ensuring strict equality for Roman Numeral values
     if (bubble.num === target.num) {
       // Correct!
       setScore(prev => {
