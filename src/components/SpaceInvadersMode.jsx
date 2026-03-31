@@ -3,12 +3,12 @@ import { toRoman } from '../utils/roman';
 import './SpaceInvadersMode.css';
 
 const LEVELS = {
-  1: { max: 10, cols: 4, rows: 2, speed: 0.8 },
-  2: { max: 20, cols: 5, rows: 2, speed: 1.0 },
-  3: { max: 30, cols: 5, rows: 3, speed: 1.2 },
-  4: { max: 40, cols: 6, rows: 3, speed: 1.5 },
-  5: { max: 50, cols: 6, rows: 3, speed: 1.8 },
-  6: { max: 50, cols: 7, rows: 3, speed: 2.2 },
+  1: { max: 10, cols: 5, rows: 1, speed: 0.8 },
+  2: { max: 15, cols: 6, rows: 1, speed: 1.0 },
+  3: { max: 20, cols: 5, rows: 2, speed: 1.2 },
+  4: { max: 30, cols: 6, rows: 2, speed: 1.5 },
+  5: { max: 40, cols: 5, rows: 3, speed: 1.8 },
+  6: { max: 50, cols: 6, rows: 3, speed: 2.2 },
 };
 
 const SHIP_SPEED = 5;
@@ -95,7 +95,7 @@ const SpaceInvadersMode = ({ onBack }) => {
     const INV_W = 60;
     const INV_H = 36;
     const INV_GAP_X = 14;
-    const INV_GAP_Y = 12;
+    const INV_GAP_Y = 55;
     const BULT_W = 4;
     const BULT_H = 14;
 
