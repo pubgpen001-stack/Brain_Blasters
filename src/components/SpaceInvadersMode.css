@@ -10,10 +10,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 800px;
+  width: 700px;
   max-width: 95vw;
   margin-bottom: 15px;
-  z-index: 10;
 }
 
 .si-hud-item {
@@ -37,125 +36,25 @@
   box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
 }
 
-.si-find-label {
-  font-size: 0.75rem;
-  color: var(--neon-cyan);
-}
-
-.si-target-num {
-  font-size: 2.2rem;
-  font-weight: 800;
-}
-
+.si-find-label { font-size: 0.75rem; color: var(--neon-cyan); }
+.si-target-num { font-size: 2.2rem; font-weight: 800; }
 .si-stats { text-align: right; font-size: 0.95rem; }
 .si-level-label { color: var(--neon-yellow); margin-top: 4px; }
 
-/* Game area */
-.si-game {
-  position: relative;
-  background: rgba(0, 0, 0, 0.4);
+.si-canvas {
   border: 2px solid var(--card-border);
   border-radius: 20px;
-  overflow: hidden;
+  background: rgba(0, 0, 0, 0.4);
   cursor: crosshair;
   max-width: 95vw;
-  aspect-ratio: 4 / 3;
 }
 
-/* Invaders */
-.si-invader {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(244, 114, 182, 0.6));
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 800;
-  transition: transform 0.1s;
-  user-select: none;
-}
-
-.si-invader:hover {
-  transform: scale(1.05);
-}
-
-.si-target-glow {
-  box-shadow: 0 0 12px rgba(34, 211, 238, 0.5), 0 0 24px rgba(34, 211, 238, 0.2);
-  border-color: var(--neon-cyan);
-  animation: invaderPulse 1s infinite;
-}
-
-@keyframes invaderPulse {
-  0%, 100% { box-shadow: 0 0 12px rgba(34, 211, 238, 0.5); }
-  50% { box-shadow: 0 0 25px rgba(34, 211, 238, 0.8); }
-}
-
-/* Bullets */
-.si-bullet {
-  position: absolute;
-  background: var(--neon-cyan);
-  border-radius: 2px;
-  box-shadow: 0 0 6px var(--neon-cyan), 0 0 12px var(--neon-cyan);
-}
-
-/* Ship */
-.si-ship {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--neon-cyan);
-  font-size: 2rem;
-  filter: drop-shadow(0 0 8px var(--neon-cyan));
-  user-select: none;
-}
-
-/* Explosions */
-.si-explosion {
-  position: absolute;
-  font-size: 2.5rem;
-  animation: explode 0.6s forwards;
-  pointer-events: none;
-  z-index: 100;
-}
-
-.si-explosion.correct { filter: hue-rotate(140deg) brightness(1.5); }
-.si-explosion.wrong { filter: hue-rotate(0deg) brightness(1.2); }
-
-@keyframes explode {
-  0% { transform: scale(0.5); opacity: 1; }
-  50% { transform: scale(1.8); opacity: 1; }
-  100% { transform: scale(2.5); opacity: 0; }
-}
-
-/* Flash feedback */
-.si-flash {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2.5rem;
-  font-weight: 800;
-  pointer-events: none;
-  animation: popOut 0.8s forwards;
-  z-index: 200;
-  text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.si-flash.pos { color: var(--neon-cyan); }
-.si-flash.neg { color: var(--neon-pink); }
-
-/* Controls hint */
 .si-controls-hint {
   margin-top: 15px;
   color: var(--text-muted);
   font-size: 0.9rem;
 }
 
-/* Game Over */
 .si-gameover {
   max-width: 500px;
   margin: 100px auto;
@@ -164,17 +63,17 @@
   animation: pop 0.6s var(--ease-bounce);
 }
 
-.si-gameover h1 {
-  font-size: 3rem;
-  color: var(--neon-pink);
-  margin-bottom: 30px;
-}
-
+.si-gameover h1 { font-size: 3rem; color: var(--neon-pink); margin-bottom: 30px; }
 .si-final-score { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
 .si-final-level { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
 .si-gameover-actions { display: flex; flex-direction: column; gap: 15px; }
 
-@media (max-width: 850px) {
-  .si-game { width: 95vw !important; height: auto !important; }
-  .si-hud { width: 95vw; }
+.back-btn-static {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
 }
