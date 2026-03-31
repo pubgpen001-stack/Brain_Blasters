@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { toRoman } from '../utils/roman';
+import { playShoot, playCorrect, playWrong, playExplosion, playLevelUp, playGameOver } from '../utils/sounds';
 import './SpaceInvadersMode.css';
 
 const LEVELS = {
@@ -120,6 +121,7 @@ const SpaceInvadersMode = ({ onBack }) => {
         if (now - s.lastShot > 350) {
           s.lastShot = now;
           s.bullets.push({ x: s.shipX * W, y: H - SHIP_H - 15 });
+          playShoot();
         }
       }
 
@@ -154,10 +156,13 @@ const SpaceInvadersMode = ({ onBack }) => {
               s.explosions.push({ x: pos.x + INV_W / 2, y: pos.y + INV_H / 2, t: Date.now(), type: 'good' });
               s.flash = '🚀 BOOM!';
               s.flashTime = Date.now();
+              playCorrect();
+              playExplosion();
               const remaining = s.invaders.filter(i => i.alive);
               if (remaining.length === 0) {
                 if (s.level < 6) {
                   initLevel(s.level + 1);
+                  playLevelUp();
                 } else {
                   gameStateRef.current = 'win';
                   setUiState({ score: s.score, lives: s.lives, level: s.level, target: s.target, gameState: 'win' });
@@ -170,10 +175,12 @@ const SpaceInvadersMode = ({ onBack }) => {
               s.explosions.push({ x: pos.x + INV_W / 2, y: pos.y + INV_H / 2, t: Date.now(), type: 'bad' });
               s.flash = `${inv.roman} = ${inv.num}`;
               s.flashTime = Date.now();
+              playWrong();
               s.lives--;
               if (s.lives <= 0) {
                 gameStateRef.current = 'gameover';
                 setUiState({ score: s.score, lives: 0, level: s.level, target: s.target, gameState: 'gameover' });
+                playGameOver();
                 return;
               }
             }
