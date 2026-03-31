@@ -22,6 +22,12 @@ const TestMode = ({ onBack, onGameOver }) => {
 
   const gameLoopRef = useRef();
   const nextBubbleId = useRef(0);
+  const targetRef = useRef(null); // track latest target for use in closures
+
+  // Keep targetRef in sync with target state
+  useEffect(() => {
+    targetRef.current = target;
+  }, [target]);
 
   // Initialize target
   useEffect(() => {
@@ -35,10 +41,18 @@ const TestMode = ({ onBack, onGameOver }) => {
     if (gameState !== 'playing') return;
 
     const spawnInterval = setInterval(() => {
-      spawnBubble();
+      spawnBubble(false);
     }, LEVELS[level].interval);
 
-    return () => clearInterval(spawnInterval);
+    // Force-spawn the correct bubble within 5 seconds max
+    const guaranteeInterval = setInterval(() => {
+      spawnBubble(true);
+    }, 5000);
+
+    return () => {
+      clearInterval(spawnInterval);
+      clearInterval(guaranteeInterval);
+    };
   }, [gameState, level]);
 
   const generateNewTarget = () => {
@@ -47,13 +61,14 @@ const TestMode = ({ onBack, onGameOver }) => {
     setTarget({ num: newNum, roman: toRoman(newNum) });
   };
 
-  const spawnBubble = () => {
+  const spawnBubble = (forceTarget) => {
     const config = LEVELS[level];
-    // Randomly decide if this bubble is the target
-    const isTarget = Math.random() < 0.3; // 30% chance for correct bubble
+    const currentTarget = targetRef.current;
+    // Force target bubble, or 50% chance otherwise
+    const showTarget = forceTarget || Math.random() < 0.5;
     let num;
-    if (isTarget && target) {
-      num = target.num;
+    if (showTarget && currentTarget) {
+      num = currentTarget.num;
     } else {
       num = Math.floor(Math.random() * config.max) + 1;
     }
@@ -62,7 +77,7 @@ const TestMode = ({ onBack, onGameOver }) => {
       id: nextBubbleId.current++,
       num,
       roman: toRoman(num),
-      left: Math.random() * 80 + 10, // 10% to 90%
+      left: Math.random() * 80 + 10,
       duration: config.speed + (Math.random() * 1000),
       createdAt: Date.now()
     };
@@ -73,7 +88,7 @@ const TestMode = ({ onBack, onGameOver }) => {
     setTimeout(() => {
       setBubbles(prev => {
         const found = prev.find(b => b.id === newBubble.id);
-        if (found && found.num === target?.num) {
+        if (found && found.num === targetRef.current?.num) {
           handleMiss();
         }
         return prev.filter(b => b.id !== newBubble.id);
