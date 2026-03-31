@@ -3,6 +3,7 @@ import Home from './components/Home'
 import LessonDetail from './components/LessonDetail'
 import LearnMode from './components/LearnMode'
 import TestMode from './components/TestMode'
+import SpaceInvadersMode from './components/SpaceInvadersMode'
 import './index.css'
 
 function App() {
@@ -24,12 +25,15 @@ function App() {
             onBack={() => navigateTo('home')} 
             onStartLearn={() => navigateTo('learn')}
             onStartTest={() => navigateTo('test')}
+            onStartInvaders={() => navigateTo('invaders')}
           />
         );
       case 'learn':
         return <LearnMode onBack={() => navigateTo('lesson-detail')} />;
       case 'test':
         return <TestMode onBack={() => navigateTo('lesson-detail')} onGameOver={(finalScore) => setScore(finalScore)} />;
+      case 'invaders':
+        return <SpaceInvadersMode onBack={() => navigateTo('lesson-detail')} />;
       default:
         return <Home onSelectLesson={() => navigateTo('lesson-detail')} />;
     }
