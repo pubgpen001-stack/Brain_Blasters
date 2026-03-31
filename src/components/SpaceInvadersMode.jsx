@@ -94,7 +94,7 @@ const SpaceInvadersMode = ({ onBack }) => {
     const SHIP_H = 30;
     const INV_W = 60;
     const INV_H = 36;
-    const INV_GAP_X = 14;
+    const INV_GAP_X = 30;
     const INV_GAP_Y = 55;
     const BULT_W = 4;
     const BULT_H = 14;
@@ -209,20 +209,15 @@ const SpaceInvadersMode = ({ onBack }) => {
         const pos = getInvPos(inv, s);
         const isTarget = s.target && inv.num === s.target.num;
         // Box
-        ctx.fillStyle = isTarget ? 'rgba(34, 211, 238, 0.25)' : 'rgba(168, 85, 247, 0.35)';
-        ctx.strokeStyle = isTarget ? '#22d3ee' : 'rgba(255,255,255,0.3)';
+        ctx.fillStyle = 'rgba(168, 85, 247, 0.35)';
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.roundRect(pos.x, pos.y, INV_W, INV_H, 8);
         ctx.fill();
         ctx.stroke();
         // Glow for target
-        if (isTarget) {
-          ctx.shadowColor = '#22d3ee';
-          ctx.shadowBlur = 15;
-          ctx.stroke();
-          ctx.shadowBlur = 0;
-        }
+
         // Text
         ctx.fillStyle = 'white';
         ctx.font = 'bold 16px Outfit, sans-serif';
