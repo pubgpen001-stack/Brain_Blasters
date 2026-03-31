@@ -1,0 +1,128 @@
+.home-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero {
+  margin-bottom: 60px;
+  animation: pop 0.8s var(--ease-bounce);
+}
+
+.rocket-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.main-title {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin: 0;
+  color: white;
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 20px;
+}
+
+.lesson-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 30px 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lesson-card.locked {
+  filter: grayscale(0.8) brightness(0.6);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.lesson-card.unlocked {
+  border-color: var(--neon-cyan);
+  background: rgba(34, 211, 238, 0.05);
+}
+
+.lesson-card.unlocked:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+.lesson-number {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--neon-cyan);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.lesson-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.lock-badges {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.play-badge {
+  margin-top: 15px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: var(--neon-cyan);
+  color: black;
+  padding: 6px 12px;
+  border-radius: 99px;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+  .lessons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}

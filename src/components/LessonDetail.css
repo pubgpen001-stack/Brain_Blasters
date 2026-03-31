@@ -1,0 +1,84 @@
+.lesson-detail-container {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  animation: pop 0.5s var(--ease-bounce);
+}
+
+.detail-header {
+  margin-bottom: 60px;
+}
+
+.lesson-tag {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--neon-cyan);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.detail-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+}
+
+.detail-desc {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 15px auto 0;
+}
+
+.mode-selection {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.mode-card {
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  padding: 40px 30px;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 32px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(20px);
+}
+
+.mode-card:hover {
+  transform: translateY(-15px) scale(1.05);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 211, 238, 0.4);
+}
+
+.mode-card h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 15px 0;
+  color: white;
+}
+
+.mode-card p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.mode-icon {
+  font-size: 80px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 10px var(--neon-cyan));
+}
+
+@media (max-width: 768px) {
+  .mode-selection {
+    gap: 20px;
+  }
+}
